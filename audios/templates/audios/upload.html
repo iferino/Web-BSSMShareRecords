@@ -1,12 +1,10 @@
 {% extends "audios/base.html" %}
 {% load static %}
 {% block content %}
-<br />
-<br />
-<br />
 <div id="alert_box"></div>
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-<div class="upload-box">
+<div class="music-player">
+  <br /><br />
   <h3>
     Upload - {{ week.audio_class.audio_class_name }}
   </h3>
@@ -24,6 +22,7 @@
           {{ form.audio_file }}
         </div>
       </div>
+      <br />
       <div class="row form-group" id="submit_div">
         <div class="col-lg-12">
           <button type="submit" value="Upload" class="btn btn-success">SUBMIT</button>
@@ -34,13 +33,12 @@
           <div class="progress-bar" id="progress_bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
         </div>
       </div>
-      <div class="row form-group">
+      <div class="form-group">
         <p style="color:white;" id="progress_text"></p>
       </div>
     </div>
   </form>
 </div>
-
 <br />
 <br />
 <p><a href="/"><i class="fa fa-home" aria-hidden="true"></i> Home</a></p>

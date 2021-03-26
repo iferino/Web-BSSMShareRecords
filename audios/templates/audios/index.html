@@ -3,30 +3,30 @@
 {% block content %}
 
 {% if audio_classes %}
-<br/>
-<h1>BSSM2 AMTs & Bible Classes Trimester3</h1>
-<br/>
+<br />
+<h2>BSSM2 AMTs & Bible Classes Trimester3</h2>
+<br />
 <table class="center">
-    {% for audio_class in audio_classes %}
-    <tr>
-        <td style="text-align: left;">
-            <strong>{{ audio_class.audio_class_name }} </strong>
-        </td>
-        <td>
-            {% for week in audio_class.audioclassweek_set.all %}
-                <a href="{% url 'details' audio_class.id week.id %}">{{ week.week_name }}</a>
-            {% endfor %}
-        </td>
-    </tr>
-    {% endfor %}
+  {% for audio_class in audio_classes %}
+  <tr>
+    <td style="text-align: left;">
+      <strong>{{ audio_class.audio_class_name }} </strong>
+    </td>
+    <td>
+      {% for week in audio_class.audioclassweek_set.all %}
+      <a href="{% url 'details' audio_class.id week.id %}">{{ week.week_name }}</a>
+      {% endfor %}
+    </td>
+  </tr>
+  {% endfor %}
 </table>
 {% else %}
-    <p>No classes are available.</p>
+<p>No classes are available.</p>
 {% endif %}
 
-<br/>
-.....................................
-<p><p>Contact me: <a href="mailto:ferin.mac@gmail.com?subject=Share Audio Records">ferin.mac@gmail.com</a>
+<br />
+<p>
+<p>Contact me: <a href="mailto:ferin.mac@gmail.com?subject=Share Audio Records">ferin.mac@gmail.com</a>
 
 
 {% endblock content %}
