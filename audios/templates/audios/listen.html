@@ -1,16 +1,35 @@
 {% extends "audios/base.html" %}
+{% load static %}
 
 {% block content %}
-<br/>
-<h2>{{ week.audio_class.audio_class_name }} - {{ week.week_name }}</h2>
-<br/>
-<br/>
-<audio src="{{ week.audio_file.url }}" controls autoplay></audio>
-<br/>
-<br/>
-<p><a href="{{ week.audio_file.url }}" download>Download File</a></p>
-<p><a href="/">Back to listing page</a></p>
-<br/>
-.....................................
-<p><p>Contact me: <a href="mailto:ferin.mac@gmail.com?subject=Share Audio Records">ferin.mac@gmail.com</a>
+<div class="music-player">
+  <div class="titre">
+    <h3>
+      {{ week.audio_class.audio_class_name }}
+    </h3>
+    <h1>
+      {{ week.week_name }}
+    </h1>
+  </div>
+  <div class="lecteur">
+    <audio class="fc-media" style="width: 100%;">
+      <source src="{{week.audio_file.url}}" />
+    </audio>
+  </div>
+  <div class="downloadfile">
+    <a href="{{ week.audio_file.url }}" download><i class="fa fa-download" aria-hidden="true"></i> Download</a>
+  </div>
+</div>
+<br />
+<br />
+<p><a href="/"><i class="fa fa-home" aria-hidden="true"></i> Home</a></p>
+
+<p>Contact me: <a href="mailto:ferin.mac@gmail.com?subject=Share Audio Records">ferin.mac@gmail.com</a></p>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mediaelement/4.2.7/mediaelement-and-player.min.js">
+</script>
+<script src="{% static 'audios/js/script.js' %}"></script>
+
 {% endblock content %}
