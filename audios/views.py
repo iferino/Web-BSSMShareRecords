@@ -18,10 +18,14 @@ def details(request, class_id, week_id):
     return response
 
 def listen(request, class_id, week_id):
-    audio_class = AudioClass.objects.get(pk=class_id)
     week = AudioClassWeek.objects.get(pk=week_id)
-    context = { 'audio_class': audio_class, 'week': week}
-    return render(request, 'audios/listen.html', context)
+    if week.audio_file:
+        audio_class = AudioClass.objects.get(pk=class_id)
+        week = AudioClassWeek.objects.get(pk=week_id)
+        context = { 'audio_class': audio_class, 'week': week}
+        return render(request, 'audios/listen.html', context)
+    else:
+        return HttpResponseRedirect('/' + str(class_id) + '/' + str(week_id) + '/upload')
 
 def upload_form(request, class_id, week_id):
     exists_week = AudioClassWeek.objects.get(pk=week_id)
@@ -31,5 +35,8 @@ def upload_form(request, class_id, week_id):
             form.save()
             return HttpResponse("Uploaded")
     else:
-        form = AudioClassWeekUploadForm()
+        if exists_week.audio_file:
+            return HttpResponseRedirect('/' + str(class_id) + '/' + str(week_id) + '/listen')
+        else:
+            form = AudioClassWeekUploadForm()
     return render(request, 'audios/upload.html', {'form': form, 'class_id': class_id, 'week_id': week_id, 'week': exists_week})
