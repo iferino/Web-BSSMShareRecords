@@ -1,16 +1,19 @@
 {% extends "audios/base.html" %}
 {% load static %}
 {% block content %}
-
+<br />
+<br />
+<br />
 <div id="alert_box"></div>
-<br />
-<h2>Upload audio record for {{week.audio_class.audio_class_name}} - {{ week.week_name }}</h2>
-<br />
-<br />
-
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 <div class="upload-box">
-
+  <h3>
+    Upload - {{ week.audio_class.audio_class_name }}
+  </h3>
+  <h1>
+    {{ week.week_name }}
+  </h1>
+  <br />
   <form enctype="multipart/form-data" onsubmit="onFormSubmit(event)">
     {% csrf_token %}
     <div class="container">
