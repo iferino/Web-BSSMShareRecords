@@ -20,8 +20,9 @@ def details(request, class_id, week_id):
 def listen(request, class_id, week_id):
     week = AudioClassWeek.objects.get(pk=week_id)
     if week.audio_file:
+        week.page_views = week.page_views + 1
+        week.save(update_fields=["page_views"])
         audio_class = AudioClass.objects.get(pk=class_id)
-        week = AudioClassWeek.objects.get(pk=week_id)
         context = { 'audio_class': audio_class, 'week': week}
         return render(request, 'audios/listen.html', context)
     else:
