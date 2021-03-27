@@ -14,7 +14,9 @@
     </td>
     <td>
       {% for week in audio_class.audioclassweek_set.all %}
-      <a href="{% url 'details' audio_class.id week.id %}">{{ week.week_name }}</a>
+      <a href="{% url 'details' audio_class.id week.id %}" {% if not week.audio_file %} style="color:grey;" {% endif %}>
+        {{ week.week_name }}
+      </a>
       {% endfor %}
     </td>
   </tr>
